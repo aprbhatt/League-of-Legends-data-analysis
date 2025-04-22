@@ -10,7 +10,7 @@ After filtering the dataset to remove missing values and keep only relevant earl
 We cleaned the dataset by focusing on a subset of early-game performance columns relevant to our question. Since we were interested in predicting win/loss based on early game dynamics, we selected 10 key columns such as firstblood, killsat10, and golddiffat10.
 Upon inspection, some rows had missing values, likely due to incomplete or truncated game recordings. We removed these rows to avoid introducing bias through imputation or incorrect assumptions. This left us with a clean dataset of 12,872 rows and no missing values.
 
-The histogram below shows how often teams secured first blood. The distribution is clearly skewed — most players in the dataset were on teams that did not get first blood. This suggests that first blood is a relatively rare event and reinforces its potential importance as a high-impact moment in a game.
+The histogram below shows how often teams secured first blood. The distribution is clearly skewed, since most players in the dataset were on teams that did not get first blood. This suggests that first blood is a relatively rare event and reinforces its potential importance as a high-impact moment in a game.
 
 <iframe 
 src="assets/fig1_firstblood.html" 
@@ -36,7 +36,7 @@ height="600"
 frameborder="0"
 ></iframe>
 
-The box plot below shows that teams who won had higher average gold differences at 10 minutes than those who lost. This suggests that even by 10 minutes, a gold lead is a good indicator of future success:
+The box plot below shows that teams who won had higher average gold differences at 10 minutes than those who lost. This suggests that even by 10 minutes, a gold lead is a good indicator of future success: 
 
 <iframe 
 src="assets/fig4_gold_diff_by_result.html" 
