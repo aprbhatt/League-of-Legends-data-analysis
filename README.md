@@ -27,7 +27,7 @@ width="800" height="600"
 frameborder="0"
 ></iframe>
 
-The chart below shows the relationship between securing first blood and winning the match. Teams that earned first blood were more likely to win, supporting our hypothesis that early kills are impactful:
+The histogram below shows how often teams secured first blood. The distribution is clearly skewed — most players in the dataset were on teams that did not get first blood. This suggests that first blood is a relatively rare event and reinforces its potential importance as a high-impact moment in a game.
 
 <iframe 
 src="assets/fig3_firstblood_vs_result.html" 
