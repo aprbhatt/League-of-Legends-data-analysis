@@ -47,9 +47,12 @@ frameborder="0"
 
 The table below shows the average win rate for teams based on whether they secured first blood:
 
-(Fig 5)
+|   First Blood |   Average Win Rate |
+|--------------:|-------------------:|
+|             0 |           0.456228 |
+|             1 |           0.609333 |
 
-Teams that earned first blood won approximately (insert % here) of their matches, compared to only (insert %) for those that didn’t. This supports the intuition that first blood provides a significant early-game advantage.
+Teams that earned first blood won approximately 61% of their matches, compared to only 46% for those that didn’t. This supports the intuition that first blood provides a significant early-game advantage.
 
 After inspecting the early-game columns relevant to our analysis, we found that some rows contained missing values. Rather than imputing these values, we chose to drop rows with any missing data using dropna(). This decision was based on the fact that the dataset is large (over 150k rows originally), and we retained over 12,000 clean observations after filtering. We avoided imputation because early-game statistics like firstblood, golddiffat10, and killsat10 are context-dependent and not safe to estimate. Imputing these values might introduce bias or noise into our classification model, especially since these stats are tied closely to in-game events that don't always occur consistently (e.g., some players never place wards or secure kills by 10 minutes).
 As a result, no imputation plots are necessary, and our cleaned dataset contains only rows with fully observed early-game metrics.
@@ -82,7 +85,9 @@ We trained a RandomForestClassifier using a Pipeline with a ColumnTransformer, a
 Number of trees (n_estimators)
 Tree depth (max_depth)
 Minimum samples to split (min_samples_split)
-Our final model achieved an accuracy of 61.8%, slightly improving on the baseline’s 61.7%. While the numerical increase is small, the use of additional early-game features (xpdiffat10, csdiffat10) and hyperparameter tuning led to a better-balanced and more informed model. These features represent aspects of in-game control beyond just kills and gold, such as experience gain and farming advantage. Our best-performing model was a RandomForestClassifier tuned using GridSearchCV across three parameters.
-
-Below is a figure of the confusion matrix associated with this model:
-(Fig 6)
+Our final model achieved an accuracy of 61.8%, slightly improving on the baseline’s 61.7%. While the numerical increase is small, the use of additional early-game features (xpdiffat10, csdiffat10) and hyperparameter tuning led to a better-balanced and more informed model. These features represent aspects of in-game control beyond just kills and gold, such as experience gain and farming advantage. Our best-performing model was a RandomForestClassifier tuned using GridSearchCV across three parameters. The confusion matrix for our final model shows the following:
+    True Positives (Predicted Win, Actual Win): 7,957
+    True Negatives (Predicted Loss, Actual Loss): 7,859
+    False Positives (Predicted Win, Actual Loss): 4,929
+    False Negatives (Predicted Loss, Actual Win): 4,830
+This means the model correctly predicted approximately 62% of both wins and losses. While it made some incorrect predictions in both directions, the overall distribution is fairly balanced, suggesting that the model is not biased toward either outcome. This aligns with the model’s F1-scores of 0.62 for both classes and confirms that our feature set captures meaningful early-game signals for classification.
