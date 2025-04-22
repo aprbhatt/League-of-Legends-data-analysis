@@ -10,7 +10,7 @@ After filtering the dataset to remove missing values and keep only relevant earl
 We cleaned the dataset by focusing on a subset of early-game performance columns relevant to our question. Since we were interested in predicting win/loss based on early game dynamics, we selected 10 key columns such as firstblood, killsat10, and golddiffat10.
 Upon inspection, some rows had missing values, likely due to incomplete or truncated game recordings. We removed these rows to avoid introducing bias through imputation or incorrect assumptions. This left us with a clean dataset of 12,872 rows and no missing values.
 
-The histogram below shows how often teams secured first blood. The distribution is fairly balanced, indicating no major skew in this feature:
+The histogram below shows how often teams secured first blood. The distribution is clearly skewed — most players in the dataset were on teams that did not get first blood. This suggests that first blood is a relatively rare event and reinforces its potential importance as a high-impact moment in a game.
 
 <iframe 
 src="assets/fig1_firstblood.html" 
@@ -27,7 +27,7 @@ width="800" height="600"
 frameborder="0"
 ></iframe>
 
-The histogram below shows how often teams secured first blood. The distribution is clearly skewed — most players in the dataset were on teams that did not get first blood. This suggests that first blood is a relatively rare event and reinforces its potential importance as a high-impact moment in a game.
+The chart below shows the relationship between securing first blood and winning the match. While teams that did not get first blood still won frequently, teams that did get first blood were more likely to win than lose. This supports our hypothesis that early kills can tilt a game’s momentum, though it is not a guaranteed path to victory.
 
 <iframe 
 src="assets/fig3_firstblood_vs_result.html" 
