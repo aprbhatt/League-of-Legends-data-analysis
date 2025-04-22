@@ -12,19 +12,19 @@ Upon inspection, some rows had missing values, likely due to incomplete or trunc
 
 The histogram below shows how often teams secured first blood. The distribution is fairly balanced, indicating no major skew in this feature:
 
-(Fig 1)
+<iframe src="assets/fig1_firstblood.html" width="800" height="600" frameborder="0"></iframe>
 
 We also visualized the distribution of golddiffat10, which shows a roughly symmetric bell shape around 0. This suggests that most teams are close in gold at the 10-minute mark, but some start to pull ahead or fall behind:
 
-(Fig 2)
+<iframe src="assets/fig2_gold_diff.html" width="800" height="600" frameborder="0"></iframe>
 
 The chart below shows the relationship between securing first blood and winning the match. Teams that earned first blood were more likely to win, supporting our hypothesis that early kills are impactful:
 
-(Fig 3)
+<iframe src="assets/fig3_firstblood_vs_result.html" width="800" height="600" frameborder="0"></iframe>
 
 The box plot below shows that teams who won had higher average gold differences at 10 minutes than those who lost. This suggests that even by 10 minutes, a gold lead is a good indicator of future success:
 
-(Fig 4)
+<iframe src="assets/fig4_gold_diff_by_result.html" width="800" height="600" frameborder="0"></iframe>
 
 The table below shows the average win rate for teams based on whether they secured first blood:
 
