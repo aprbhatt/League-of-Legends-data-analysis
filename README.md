@@ -61,7 +61,7 @@ As a result, no imputation plots are necessary, and our cleaned dataset contains
 
 The prediction problem we address is: "Can we predict whether a professional League of Legends team will win a match using only early-game statistics available by the 10-minute mark?" This is a binary classification problem where the response variable is:
 result: 1 if the player's team won the match, 0 if they lost.
-We selected this variable because it directly reflects the competitive outcome of the game, and understanding what leads to victory is highly relevant to players, analysts, and fans. The features we used for prediction (e.g., firstblood, golddiffat10, killsat10, assistsat10) are all known within the first 10 minutes of gameplay — ensuring the model does not "peek into the future."
+We selected this variable because it directly reflects the competitive outcome of the game, and understanding what leads to victory is highly relevant to players, analysts, and fans. The features we used for prediction (e.g., firstblood, golddiffat10, killsat10, assistsat10) are all known within the first 10 minutes of gameplay.
 We evaluated model performance using accuracy, which is an appropriate metric in our case because the dataset is perfectly balanced between wins and losses (50/50). Precision and recall are not as critical here since both false positives and false negatives carry similar consequences in this esports context.
 This model could hypothetically be used mid-game to assess win probability based on early dynamics, which helps analysts understand what factors actually tilt the odds in a team’s favor.
 
@@ -75,12 +75,12 @@ The baseline model achieved an accuracy of 61.7%, with a balanced precision and 
 
 ## Final Model
 To improve upon the baseline, we added two new early-game features:
-xpdiffat10: Experience point difference at 10 minutes — reflects which team is gaining more levels early
-csdiffat10: Minion kill difference at 10 minutes — an indicator of farming efficiency and lane control
+xpdiffat10: Experience point difference at 10 minutes, which reflects which team is gaining more levels early
+csdiffat10: Minion kill difference at 10 minutes, an indicator of farming efficiency and lane control
 These features are relevant to predicting match outcome because they indicate map pressure, laning success, and early resource control, which often snowball into a win in professional League of Legends. We applied different preprocessing steps for different features:
 golddiffat10: Scaled with StandardScaler
 xpdiffat10: Transformed with QuantileTransformer to reduce skew and better fit a tree model
-firstblood and csdiffat10: Left as-is (binary and small-scale numeric)
+firstblood and csdiffat10: Left as it is
 We trained a RandomForestClassifier using a Pipeline with a ColumnTransformer, and tuned hyperparameters using GridSearchCV with 5-fold cross-validation. The parameters we tuned were:
 Number of trees (n_estimators)
 Tree depth (max_depth)
